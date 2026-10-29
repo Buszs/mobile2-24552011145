@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '../models/mata_kuliah.dart';
+
+class BerandaScreen extends StatelessWidget {
+  const BerandaScreen({super.key});
+
+  static const _jadwal = [
+    MataKuliah(
+      kode: 'IF-024',
+      nama: 'Kompleksitas Algoritma',
+      sks: 3,
+      hari: 'Senin',
+    ),
+    MataKuliah(
+      kode: 'IF-021',
+      nama: 'Sistem Informasi Enterprise',
+      sks: 3,
+      hari: 'Selasa',
+    ),
+    MataKuliah(
+      kode: 'IF-022',
+      nama: 'Sistem Mikroprosesor',
+      sks: 3,
+      hari: 'Selasa',
+    ),
+    MataKuliah(kode: 'IF-028', nama: 'Bahasa Indonesia', sks: 3, hari: 'Rabu'),
+    MataKuliah(
+      kode: 'IF-023',
+      nama: 'Personal Deevelopment',
+      sks: 3,
+      hari: 'Rabu',
+    ),
+    MataKuliah(
+      kode: 'IF-024',
+      nama: 'Pemrograman Mobile II',
+      sks: 3,
+      hari: 'Kamis',
+    ),
+    MataKuliah(
+      kode: 'IF-021',
+      nama: 'Augmented Virtual Reality',
+      sks: 3,
+      hari: 'Kamis',
+    ),
+    MataKuliah(
+      kode: 'IF-022',
+      nama: 'Desain Kreatif Aplikasi dan Game',
+      sks: 3,
+      hari: 'Jumat',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('KampusKu')),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              DateFormat('EEEE, d MMMM y', 'id_ID').format(DateTime.now()),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ),
+          for (final mk in _jadwal)
+            ListTile(
+              leading: const Icon(Icons.class_),
+              title: Text(mk.nama),
+              subtitle: Text('${mk.kode} · ${mk.hari} · ${mk.sks} SKS'),
+            ),
+        ],
+      ),
+    );
+  }
+}
